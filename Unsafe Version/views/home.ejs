@@ -1,0 +1,81 @@
+<%- include ('partials/header.ejs') %>
+
+<div class="container">
+	<div class="row">
+
+		<div class="container-fluid col-md-9 col-sm-12">
+	
+			<div class="h1 text-center my-3">Blogs Feed</div>
+
+			<div class="container row">
+						
+				<% blogs.forEach(function(blog){ %>
+					<div class="col-6 d-flex align-items-stretch">
+						<div class="card m-3 mx-auto  d-flex flex-fill">
+							<img class="rounded-circle img-fluid mx-auto" src="<%= blog.image %>" style="width: 15em;">
+				
+							<div class="card-body">
+								<a class="card-title ">
+									<%= blog.title %>
+								</a>
+
+								<div class="card-subtitle mb-2 text-muted">
+									Posted by : 
+									<%= blog.authorName %>
+								</div>
+				
+								<div class="card-subtitle mb-2 text-muted">
+									Posted on : 
+									<%= blog.created.toDateString() %>
+								</div>
+								
+								<div style="height: 5em;">
+								<div class="card-text">
+									<p><%= blog.body.substring(0, 50); %> <i class="bi bi-three-dots"></i> </p>
+								</div>
+								</div>
+								
+								<div class="card-footer">
+									<a href="/blogs/<%=blog._id %>" class="btn btn-primary">
+									Read More <i class="bi bi-arrow-right-circle-fill"></i>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				<% }); %>
+			</div>
+		</div>
+
+		<div class="container-fluid col-md-3 col-sm-12">
+
+			<div class="h1 text-center my-4" style="color: transparent;">Search</div>
+
+			<form class="container row card p-2 mx-auto" action="/search" method="POST">
+        
+				<div class="mb-3">
+					<input class="form-control" type="text" name="title" placeholder="Search Blog by title">
+				</div>
+				
+				<div class="card-footer">
+					<button class="btn btn-outline-info">Search Blog</button>
+				</div>
+				
+			</form>
+
+			<div class="h3 text-center my-4">Notes</div>
+
+			<ul class="list-group">
+
+				<% notes.forEach(function(note){ %>
+
+					<li class="list-group-item"><%- note.text %></li>
+				
+				<% }); %>
+			</ul>
+
+		</div>
+	</div>
+</div>
+  
+<%- include ('partials/footer.ejs') %>

@@ -1,0 +1,70 @@
+<%- include ('partials/header.ejs') %>
+
+<div class="container">
+	<div class="row">
+
+		<div class="container-fluid col-md-9 col-sm-12">
+	
+			<div class="h1 text-center my-3">All <%= author %>'s Blogs</div>
+
+			<div class="container row">
+						
+				<% blogs.forEach(function(blog){ %>
+					<div class="col-6 d-flex align-items-stretch">
+						<div class="card m-3 mx-auto  d-flex flex-fill">
+							<img class="rounded-circle img-fluid mx-auto" src="<%= blog.image %>" style="width: 15em;">
+				
+							<div class="card-body">
+								<a class="card-title ">
+									<%= blog.title %>
+								</a>
+
+								<div class="card-subtitle mb-2 text-muted">
+									Posted by : 
+									<%= blog.authorName %>
+								</div>
+				
+								<div class="card-subtitle mb-2 text-muted">
+									Posted on : 
+									<%= blog.created.toDateString() %>
+								</div>
+								
+								<div style="height: 5em;">
+								<div class="card-text">
+									<p><%= blog.body.substring(0, 50); %> <i class="bi bi-three-dots"></i> </p>
+								</div>
+								</div>
+								
+								<div class="card-footer">
+									<a href="/blogs/<%=blog._id %>" class="btn btn-primary">
+									Read More <i class="bi bi-arrow-right-circle-fill"></i>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				<% }); %>
+			</div>
+		</div>
+
+		<div class="container-fluid col-md-3 col-sm-12">
+
+			<div class="h3 text-center my-4">All <%= author %>'s Comments</div>
+
+			<ul class="list-group">
+
+				<% comments.forEach(function(comment){ %>
+
+					<li class="list-group-item">
+                        <p class="text-muted">For "<%= comment.blogName %>" By "<%= comment.authorName %>"</p>
+						<p class="text-wrap" style="word-break: break-word;"><%= comment.text %></p>
+                    </li>
+				
+				<% }); %>
+			</ul>
+
+		</div>
+	</div>
+</div>
+  
+<%- include ('partials/footer.ejs') %>

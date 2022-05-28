@@ -1,0 +1,53 @@
+<html>
+  <head>
+    <title>Blog Site</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+
+  </head>
+  <body>
+    
+    <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark px-5">
+
+      <div class="container-fluid">
+        <img src="https://cdn2.iconfinder.com/data/icons/user-interface-1-3/85/blog_website_webpage_web_internet-128.png" class="rounded-circle img-fluid" style="width: 2.3em; background: white;">
+
+        <a class="navbar-brand active" href="/">&nbsp; Blog Site</a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+            <% if ( typeof currentUser != 'undefined' ) { %>
+              <li class="nav-item">
+                <a class="nav-link" href="/blogs/new">New Blog</a>
+              </li>
+            <% } %> 
+
+          </ul>
+
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+
+            <% if(!currentUser){ %>
+              <li class="nav-item">
+                <span id="userName"></span>
+                <a class="nav-link" href="/login">Login/Sign Up</a>
+              </li>
+            <% } else { %>
+              <img src="<%= currentUser.image %>" class="rounded-circle img-fluid" style="width: 2.3em; background: white;">
+              <a href="/user/<%= currentUser._id %>" class="navbar-brand" id="userName">&nbsp; <%= currentUser.username %></a>
+              <a href="/logout" class="nav-link"> Logout</a>
+            <% } %> 
+          </ul>
+            
+        </div>
+
+      </div>
+      
+    </nav>

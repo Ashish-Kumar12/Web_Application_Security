@@ -1,0 +1,48 @@
+
+<%- include ('partials/header.ejs') %>
+
+<div class="container m-5 mx-auto">
+    
+    <div class="h1 text-center my-3">Search Results</div>
+
+    <div class="container row">
+						
+        <% blogs.forEach(function(blog){ %>
+            <div class="col-4 d-flex align-items-stretch">
+                <div class="card m-3 mx-auto d-flex flex-fill">
+                    <img class="rounded-circle img-fluid mx-auto" src="<%= blog.image %>" style="width: 15em;">
+        
+                    <div class="card-body">
+                        <a class="card-title ">
+                            <%= blog.title %>
+                        </a>
+
+                        <div class="card-subtitle mb-2 text-muted">
+                            Posted by : 
+                            <%= blog.authorName %>
+                        </div>
+        
+                        <div class="card-subtitle mb-2 text-muted">
+                            Posted on : 
+                            <%= blog.created.toDateString() %>
+                        </div>
+                        
+                        <div style="height: 5em;">
+                        <div class="card-text">
+                            <p><%= blog.body.substring(0, 50); %> <i class="bi bi-three-dots"></i> </p>
+                        </div>
+                        </div>
+                        
+                        <div class="card-footer">
+                            <a href="/blogs/<%=blog._id %>" class="btn btn-primary">
+                            Read More <i class="bi bi-arrow-right-circle-fill"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <% }); %>
+    </div>
+</div>
+
+<%- include ('partials/footer.ejs') %>

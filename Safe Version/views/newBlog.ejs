@@ -1,0 +1,31 @@
+<%- include ('partials/header.ejs') %>
+
+<div class="container-fluid px-auto" style="width: 70vw;">
+
+    <div class="h1 text-center my-3">New Blog</div>
+
+    <form class="container card col-10 p-2" action="/blogs" method="POST">
+        
+        <div class="mb-3">
+            <label class="form-label">Title</label>
+            <input class="form-control" type="text" name="blog[title]">
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Image</label>
+            <input class="form-control" type="text" name="blog[image]">
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Blog Post Content</label>
+            <textarea class="form-control" name="blog[body]"></textarea>
+        </div>
+        
+        <div class="card-footer">
+            <button class="btn btn-outline-success">Create Post</button>
+        </div>
+        
+    </form>
+</div>
+
+<%- include ('partials/footer.ejs') %>

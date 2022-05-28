@@ -1,0 +1,32 @@
+
+<%- include ('partials/header.ejs') %>
+
+<div class="container-fluid px-auto" style="width: 70vw;">
+
+    <div class="h1 text-center my-3">Edit Blog Post</div>
+
+    <form class="container card col-10 p-2" action="/blogs/<%=blog._id%>?_method=PUT" method="POST">
+
+        <div class="mb-3">
+            <label class="form-label">Title</label>
+            <input class="form-control" type="text" value="<%= blog.title %>" name="blog[title]">
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Image</label>
+            <input class="form-control" type="text" value="<%= blog.image %>" name="blog[image]">
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Post Content</label>
+            <textarea class="form-control" name="blog[body]"><%= blog.body %></textarea>
+        </div>
+
+        <div class="card-footer">
+            <button class="btn btn-outline-success">Update Blog Post</button>
+        </div>
+
+    </form>
+</div>
+
+<%- include ('partials/footer.ejs') %>

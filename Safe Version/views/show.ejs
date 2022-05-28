@@ -1,0 +1,92 @@
+<%- include ('partials/header.ejs') %>
+
+<div class="container">
+	<div class="row">
+
+		<div class="container-fluid col-md-9">
+
+			<div class="h1 text-center my-3"><%= blog.title %></div>
+
+			<div class="container-fluid">
+
+				<div class="container-fluid row m-3 mx-auto d-flex align-items-center">
+					<!-- style="width: 25em;" -->
+					<img class="rounded-circle col-6 img-fluid mx-auto" src="<%= blog.image %>">
+					
+					<div class="col-6 p-2 m-2 text-center mx-auto">
+
+						<span class="card-subtitle text-muted"> Posted By : </span>
+						<div class="card-subtitle text-muted lead">
+							<span class="display-3"><%= blog.authorName %></span>
+						</div>
+
+						<div class="card-subtitle text-muted">
+							<span><%= blog.created.toDateString() %></span>
+						</div>
+
+					</div>
+
+					<div class="card card-text p-2">
+						<p class="lead d-flex justify-content-center"><%= blog.body %></p>
+					</div>
+
+					<% if ( typeof currentUser != 'undefined' ) { if(currentUser._id.toString() == blog.author.toString()){ %>
+
+					<div class="card-footer">
+						<a href="/blogs/<%=blog._id%>/edit" class="btn btn-warning">
+						Edit Blog <i class="bi bi-pencil-square"></i>
+						</a>
+					
+
+						<form style="display: inline;" method="POST" action="/blogs/<%=blog._id%>?_method=DELETE">
+							<button class="btn btn-danger" type="submit">Delete Blog  <i class="bi bi-trash"></i></button>
+						</form>
+
+					</div>
+
+					<% } } %>
+
+				</div>
+
+			</div>
+			
+		</div>
+
+		<div class="container-fluid col-md-3">
+			<div class="h3 text-center mt-5 mb-4">Comments</div>
+
+			<ul class="list-group container">
+
+				<% comments.forEach(function(comment){ %>
+
+					<li class="list-group-item container">
+						<p class="text-muted">Comment By : <%= comment.authorName %></p>
+						<p class="text-wrap" style="word-break: break-word;"><%= comment.text %></p>
+					</li>
+				
+				<% }); %>
+			</ul>
+
+			<% if ( typeof currentUser != 'undefined' ) { %>
+
+				<div class="h5 text-center my-3">New Comment</div>
+
+				<form class="container-fluid mx-auto" action="<%= blog._id %>/newComment" method="POST">
+        
+					<div class="mb-3">
+						<input class="form-control" type="text" name="text" placeholder="Type in a comment">
+					</div>
+		
+					<div class="card-footer">
+						<button class="btn btn-outline-success">Post Comment</button>
+					</div>
+					
+				</form>
+
+			<% } %>
+		</div>
+
+	</div>
+</div>
+    
+<%- include ('partials/footer.ejs') %>
